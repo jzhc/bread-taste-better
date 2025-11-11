@@ -1,0 +1,110 @@
+
+units:
+  #U - mx 19.05mm
+  dx: 1.02U
+points:
+  zones:
+    matrix:
+      columns:
+        outer:
+          rows.upper.skip: true
+          key:
+            padding: 
+        pinky:
+          key:
+            spread: dx
+            stagger: -12
+            splay: -0.5
+        ring:
+          rows.bottom.skip: true
+          key:
+            spread: dx
+            stagger: 4
+            padding:
+        middle:
+          rows.bottom.skip: true
+          key:
+            spread: dx
+            stagger: 10
+            padding:
+        index:
+          rows.bottom.skip: true
+          key:
+            spread: dx
+            splay: 
+            stagger: -5
+        inner:
+          rows.bottom.skip: true
+          key:
+            stagger: -5
+            splay: -1
+
+          
+      rows:
+        bottom:
+          key:
+            padding: 
+        lower:
+          key: 
+        home:
+          key:
+            padding: py
+        upper:
+        
+    thumb:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [1,-6]
+        rotate: -3
+      columns:
+        close:
+          key:
+            shift: [-2,-7]
+            rotate: 14
+        center:
+        far:
+          key:
+            shift: [2,0]
+            rotate: -9
+
+  rotate: -20
+  mirror: &mirror
+    ref: matrix_inner_bottom
+    distance: 5U
+
+
+pcbs:
+  simple_split:
+    footprints:
+      keys:
+        what: mx
+        where: true
+        params:
+          from: GND
+          to: "{{name}}"
+          reverse: true
+          keycaps: true
+      mcu:
+        what: promicro
+        where:
+          - ref: matrix_inner_home
+            shift: [1U, 0.5U]
+            rotate: -90
+        params:
+          P7: matrix_pinky_top
+          P18: matrix_ring_top
+          P19: matrix_middle_top
+          P20: matrix_index_top
+          P21: matrix_inner_top
+          P15: matrix_pinky_home
+          P14: matrix_ring_home
+          P16: matrix_middle_home
+          P10: matrix_index_home
+          P1: matrix_inner_home
+          P2: matrix_pinky_bottom
+          P3: matrix_ring_bottom
+          P4: matrix_middle_bottom
+          P5: matrix_index_bottom
+          P6: matrix_inner_bottom
+          P8: thumb_tucky
+          P9: thumb_reachy
